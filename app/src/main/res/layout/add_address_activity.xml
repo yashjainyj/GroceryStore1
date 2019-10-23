@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_below="@+id/appbar"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="20sp"
+        android:id="@+id/linear"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/mr"
+                android:layout_height="wrap_content"
+                android:text="Mr."/>
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mrs"
+                android:text="Mrs."/>
+
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/miss"
+                android:text="Miss."/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/name1"
+        android:layout_below="@+id/linear"
+        android:layout_marginRight="20dp"
+        android:hint="Name">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/name"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/flat1"
+        android:layout_below="@+id/name1"
+        android:layout_marginRight="20dp"
+        android:hint="Flat/House/Office No.">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/flat"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/street1"
+        android:layout_below="@+id/flat1"
+        android:layout_marginRight="20dp"
+        android:hint="Street/Society/Office Name">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/street"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/locality1"
+        android:layout_below="@+id/street1"
+        android:layout_marginRight="20dp"
+        android:hint="Locality">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/locality"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20sp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/nick"
+        android:text="Nickname of your address"
+        android:layout_below="@id/locality1"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/nick"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/button_linear"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_margin="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/home"
+                android:text="Home"
+                android:textColor="#9B9999"
+                android:background="@drawable/button_design_change"
+                />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_margin="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/office"
+                android:text="Office"
+                android:textColor="#9B9999"
+                android:background="@drawable/button_design_change"
+                />
+
+        </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit"
+        android:layout_marginHorizontal="25dp"
+        android:text="Add"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/button_design"
+        android:layout_below="@+id/button_linear"
+        />
+    </RelativeLayout>
+
+</ScrollView>
+</RelativeLayout>

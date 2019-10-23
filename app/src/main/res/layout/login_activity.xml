@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_margin="20sp"
+       android:padding="20sp"
+       android:background="@drawable/shadow"
+       android:layout_height="wrap_content">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/message"
+           android:text="We will send on SMS with a confirmation code to this number"
+           android:padding="20sp"
+           android:textSize="16dp"
+           android:textColor="#000"
+           android:textAlignment="center"
+           />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="16dp"
+           android:padding="16dp"
+           android:layout_below="@+id/message"
+           android:text="+91"
+           />
+
+       <EditText
+           android:layout_width="match_parent"
+           android:inputType="number"
+           android:id="@+id/number"
+           android:background="@null"
+           android:hint="Enter Number"
+           android:padding="16dp"
+           android:maxLength="10"
+           android:layout_marginStart="54sp"
+           android:layout_below="@+id/message"
+           android:layout_height="wrap_content" />
+
+
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/number"
+           android:text="Next"
+           android:background="@color/colorAccent"
+           android:textColor="#fff"
+           android:id="@+id/submit"/>
+   </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#ffffff"
+        android:text="Auto Fill with Truecaller"
+
+        android:layout_below="@+id/signin"
+        />
+
+
+</LinearLayout>

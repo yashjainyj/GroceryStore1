@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@drawable/button_design_change"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="center"
+        android:layout_alignRight="@+id/shop_name"
+        android:id="@+id/shop_image"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Shop Name"
+        android:id="@+id/shop_name"
+        android:textSize="24sp"
+        android:padding="5dp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_below="@+id/shop_name"
+        android:text="Shop Name"
+        android:id="@+id/shop_address"
+        android:textSize="16dp"
+        android:padding="5dp"
+        />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:background="@null"
+            android:id="@+id/delete"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/shop_address"
+            />
+
+
+</RelativeLayout>

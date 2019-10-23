@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/icon"
+        android:id="@+id/imageicon"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="#ffffff"
+        android:lines="3"
+        android:layout_below="@+id/imageicon"
+        android:text="Grocery store \n super saving ka Super Market"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="30sp"
+        android:textAlignment="center"
+        />
+</RelativeLayout>

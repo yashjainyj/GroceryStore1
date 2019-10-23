@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@drawable/button_design_change"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text=""
+            android:id="@+id/name"
+            android:textSize="20sp"
+            android:padding="5dp"
+            />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text=""
+            android:id="@+id/flat"
+            android:layout_below="@+id/name"
+            android:textSize="14dp"
+            android:padding="5dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text=""
+            android:id="@+id/street"
+            android:layout_below="@+id/flat"
+            android:textSize="14dp"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text=""
+            android:id="@+id/locality"
+            android:layout_below="@+id/street"
+            android:textSize="14dp"
+            android:padding="5dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text=""
+            android:id="@+id/nick"
+            android:layout_below="@+id/locality"
+            android:textSize="14dp"
+            android:padding="5dp"
+            />
+
+
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_below="@+id/nick"
+           android:orientation="horizontal"
+           android:layout_centerHorizontal="true"
+           android:layout_height="wrap_content">
+
+               <Button
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   android:id="@+id/edit"
+                   android:background="@drawable/button_design"
+                   android:text="Edit"
+                   android:textColor="#fff"
+                   />
+               <Button
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="10dp"
+                   android:background="@drawable/button_design"
+                   android:text="Delete"
+                   android:id="@+id/delete"
+                   android:textColor="#fff"
+                   />
+
+
+       </LinearLayout>
+
+
+</RelativeLayout>
