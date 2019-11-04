@@ -46,12 +46,13 @@
         <activity android:name=".User.LoginVerified"></activity>
         <activity android:name=".User.Add_Address" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".User.Address_Detail" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Admin.Shops_Main" android:theme="@style/AppTheme.NoActionBar">
-
-
-
-        </activity>
+        <activity android:name=".Admin.Shops_Main" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Admin.Show_Item"></activity>
+        <activity android:name=".Admin.Add_Item"></activity>
         <activity android:name=".Admin.Add_Shop"></activity>
+        <activity android:name=".Main.ShowItemMain"></activity>
+        <activity android:name=".Main.Product_Detail"></activity>
+        <activity android:name=".User.Cart_Main"></activity>
     </application>
 
 </manifest>

@@ -3,17 +3,12 @@ package com.example.grocerystore.Location;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,26 +21,31 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.MainActivity;
+import com.example.grocerystore.MyUtility;
 import com.example.grocerystore.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -55,6 +55,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class SearchLocation extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     AutoCompleteTextView search;
@@ -67,8 +74,8 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
     public static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     Geocoder geocoder;
-    PlaceAutocompleteAdapter placeAutocompleteAdapter;
-    private GoogleApiClient mGoogleApiClient;
+    PlacesClient placesClient;
+    String key = "AIzaSyB8iCaCRn1onwn_1sdLSYxnRnn7XykZUYs";
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -168), new LatLng(71, 136));
 
@@ -76,14 +83,35 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_location);
-        setTitle("");
+        setTitle("Search Loaction");
+        setTitleColor(Color.WHITE);
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        search = findViewById(R.id.search);
+        if (!Places.isInitialized())
+            Places.initialize(getApplicationContext(), key);
+
+        placesClient = Places.createClient(this);
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteFragment.setCountry("IN");
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                Toast.makeText(SearchLocation.this, place.getName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                Toast.makeText(SearchLocation.this, status.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         getCurrentLocation = findViewById(R.id.getCurrentLocation);
         getCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +120,7 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
                 getDeviceLocation();
             }
         });
-        init();
+
     }
 
 
@@ -112,6 +140,7 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
                             List<Address> list = new ArrayList<>();
                             try {
                                 list = geocoder.getFromLocation(currentLocation.getLatitude(),currentLocation.getLongitude(),1);
+                                MyUtility.location=list.get(0).getLocality();
                                 Intent intent = new Intent(SearchLocation.this, MainActivity.class);
                                 Toast.makeText(SearchLocation.this, list.get(0).getSubAdminArea(), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
@@ -179,38 +208,6 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
 
     }
 
-
-    private void init(){
-                    mGoogleApiClient = new GoogleApiClient
-                    .Builder(this)
-                    .addApi(Places.GEO_DATA_API)
-                    .addApi(Places.PLACE_DETECTION_API)
-                    .enableAutoManage(this, this)
-                    .build();
-
-            placeAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient,
-                    LAT_LNG_BOUNDS, null);
-
-           search.setAdapter(placeAutocompleteAdapter);
-
-        
-            search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    if(actionId== EditorInfo.IME_ACTION_SEARCH
-                            || actionId == EditorInfo.IME_ACTION_DONE
-                            || event.getAction() == KeyEvent.ACTION_DOWN
-                            || event.getAction() == KeyEvent.KEYCODE_ENTER
-                    )
-                    {
-                        getLocate();
-                    }
-                    else
-                        Toast.makeText(SearchLocation.this, "yehh", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            });
-    }
     private  void getLocate(){
         String searchString = search.getText().toString();
         Geocoder geocoder = new Geocoder(this);
@@ -223,9 +220,14 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
         if (list.size()>0)
         {
             Address address = list.get(0);
-            Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
             Log.d("d",address.toString());
+            MyUtility.location=list.get(0).getLocality();
+            Intent intent  = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
+
         else
             Toast.makeText(this, "Not a Valid City", Toast.LENGTH_SHORT).show();
     }
@@ -267,4 +269,12 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
 //        }
 //        return true;
 //    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent  = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

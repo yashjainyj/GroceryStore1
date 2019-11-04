@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardElevation="2dp"
+    card_view:cardUseCompatPadding="true"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/image_item"
+                android:layout_height="wrap_content">
+
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textColor="#000"
+                    android:layout_margin="5dp"
+                    android:textSize="22dp"
+                    android:id="@+id/product_price"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:layout_margin="5dp"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:id="@+id/product_name"
+
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:id="@+id/minus"
+                    android:src="@drawable/ic_minus_sign_inside_a_black_rounded_square_shape"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="#000"
+                    android:textSize="22dp"
+                    />
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_weight="1"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_plus_symbol_in_a_rounded_black_square"
+                    />
+
+
+
+            </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

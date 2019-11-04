@@ -6,24 +6,18 @@ public class Shop_Detais_Modal {
     private String shop_Address;
     private String shop_rating;
     private String image_Url;
+    private String min;
     private String contact_number;
 
     public Shop_Detais_Modal() {
     }
-
-    public Shop_Detais_Modal(String shop_Name, String shop_Address, String shop_rating, String image_Url, String contact_number) {
-        this.shop_Name = shop_Name;
-        this.shop_Address = shop_Address;
-        this.shop_rating = shop_rating;
-        this.image_Url = image_Url;
-        this.contact_number = contact_number;
-    }
-    public Shop_Detais_Modal(String shop_Id, String shop_Name, String shop_Address, String shop_rating, String image_Url, String contact_number) {
+    public Shop_Detais_Modal(String shop_Id, String shop_Name, String shop_Address, String shop_rating,String min, String image_Url, String contact_number) {
         this.shop_Id = shop_Id;
         this.shop_Name = shop_Name;
         this.shop_Address = shop_Address;
         this.shop_rating = shop_rating;
         this.image_Url = image_Url;
+        this.min = min;
         this.contact_number = contact_number;
     }
 
@@ -74,4 +68,13 @@ public class Shop_Detais_Modal {
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
     }
+    public String getMin() {
+        return min;
+    }
+
+    public void setMin(String min) {
+        this.min = min;
+    }
+
 }
+

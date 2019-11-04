@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20sp"
+            android:layout_height="230dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="125dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:id="@+id/image_item"
+                android:padding="10dp"
+                android:src="@drawable/poster"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/image"
+                android:layout_marginTop="-45dp"
+                android:layout_below="@+id/image_item"
+                android:src="@drawable/draw"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20sp"
+                android:text="Sugar"
+                android:textSize="12dp"
+                android:textColor="#fff"
+                android:paddingVertical="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-40dp"
+                android:id="@+id/item_name"
+                android:layout_below="@+id/image"
+                android:backgroundTintMode="src_over"
+                android:background="@drawable/button_design"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20sp"
+                android:text="123"
+                android:textSize="12dp"
+                android:textColor="#000"
+                android:paddingVertical="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:id="@+id/item_price"
+                android:layout_below="@+id/item_name"
+                android:backgroundTintMode="src_over"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

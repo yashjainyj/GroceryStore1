@@ -3,9 +3,7 @@ package com.example.grocerystore.User;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +23,10 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginVerified extends AppCompatActivity {
     EditText code;
@@ -116,4 +118,12 @@ public class LoginVerified extends AppCompatActivity {
             Log.d("complete", "onComplete: ----------------->" + e.getMessage());
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent  = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

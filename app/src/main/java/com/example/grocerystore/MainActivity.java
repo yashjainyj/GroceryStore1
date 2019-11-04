@@ -1,33 +1,49 @@
 package com.example.grocerystore;
 
+import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.MenuInflater;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.Admin.Shops_Main;
+import com.example.grocerystore.Main.ShowItemMain;
+import com.example.grocerystore.Model.ViewPagerAdapter;
+import com.example.grocerystore.Model.ViewPager_Model;
 import com.example.grocerystore.User.Add_Address;
 import com.example.grocerystore.User.Address_Detail;
+import com.example.grocerystore.User.Cart_Main;
 import com.example.grocerystore.User.LoginActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView textView;
     FirebaseAuth firebaseAuth;
     NavigationView navigationView;
+    Button order;
+    ViewPager viewPager;
+    ViewPagerAdapter adapter;
+    Integer[] color = null;
+    List<ViewPager_Model> list;
+    ArgbEvaluator argbEvaluator =new ArgbEvaluator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +57,54 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        order=findViewById(R.id.order);
+        order.setText("Show Items");
+        list = new ArrayList<>();
+        list.add(new ViewPager_Model(R.drawable.brochure,"Upto 50% Offer","New users can now avail up to 50% OFF + Flat Rs 200 cashback"));
+        list.add(new ViewPager_Model(R.drawable.sticker,"Super Value Offer","On Grocery & Everyday Essentials Listed On The Offer Page."));
+        list.add(new ViewPager_Model(R.drawable.poster,"Dhamaka Offer","Buy products from Up to 50% off_ Dhamaka Sale at best prices "));
+        list.add(new ViewPager_Model(R.drawable.namecard,"Free Membership","Dhamaka Sale - Save 50% on 6 Months Membership Plan "));
+        adapter = new ViewPagerAdapter(list,this);
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+        viewPager.setPadding(130,0,130,0);
+        Integer[] color_temp = {
+                getResources().getColor(R.color.color1),
+                getResources().getColor(R.color.color2),
+                getResources().getColor(R.color.color3),
+                getResources().getColor(R.color.color4),
+        };
+        color = color_temp;
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShowItemMain.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position<(adapter.getCount()-1) && position<(color.length)-1 ){
+                    viewPager.setBackgroundColor((Integer) argbEvaluator.evaluate(positionOffset,color[position],color[position]+1));
+                }
+                else
+                {
+                    viewPager.setBackgroundColor(color[color.length-1]);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
         firebaseAuth = FirebaseAuth.getInstance();
@@ -118,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.location) {
-            // Handle the camera action
+
         } else if (id == R.id.userLogin) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -134,6 +198,9 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.cart) {
+            Intent intent = new Intent(MainActivity.this, Cart_Main.class);
+            startActivity(intent);
+            finish();
 
         }else if (id == R.id.nav_share) {
 

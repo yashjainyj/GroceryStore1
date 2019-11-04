@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:id="@+id/kitchen" android:title="Kitchen"></item>
+    <item  android:id="@+id/washing" android:title="Washing" ></item>
+    <item  android:id="@+id/cleaning" android:title="Cleaning" ></item>
+    <item  android:id="@+id/Bathing" android:title="Bathing" ></item>
+</menu>

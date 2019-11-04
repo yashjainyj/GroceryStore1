@@ -9,17 +9,13 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.grocerystore.MainActivity;
+import com.example.grocerystore.MyUtility;
 import com.example.grocerystore.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -33,6 +29,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class GetLocation extends AppCompatActivity {
     private static final String TAG = "GetLocation";
@@ -87,7 +89,7 @@ public class GetLocation extends AppCompatActivity {
                             try {
                                 list = geocoder.getFromLocation(currentLocation.getLatitude(),currentLocation.getLongitude(),1);
                                 Log.d(TAG,  list.get(0).getAddressLine(0) + "\n" + list.get(0).getLocality() + "\n" + list.get(0).getAdminArea() + "\n" + list.get(0).getCountryName() + "\n"+ list.get(0).getPostalCode() + "\n"+ list .get(0).getFeatureName()+"\n" + list.get(0).getSubLocality()+"\n"+list.get(0).getSubAdminArea()+"\n"+list.get(0).getPremises() + "\n"+ list.get(0).getPhone()+"\n"+list.get(0).getThoroughfare()+ "\n"+list.get(0).getSubThoroughfare());
-                                Intent intent = new Intent(GetLocation.this, MainActivity.class);
+                                MyUtility.location=list.get(0).getLocality();                                Intent intent = new Intent(GetLocation.this, MainActivity.class);
                                 Toast.makeText(GetLocation.this, list.get(0).getSubAdminArea(), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();

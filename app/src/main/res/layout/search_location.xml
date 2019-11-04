@@ -4,60 +4,48 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appbar"
         >
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/search"
-            />
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:background="@null"
-            android:focusable="true"
-            android:id="@+id/search"
-            android:padding="15sp"
-            android:maxLines="1"
-            android:minLines="1"
-            android:lines="1"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
-            android:hint="Search location"
-            android:textColorHint="#ffffff"
-            />
+    </androidx.appcompat.widget.Toolbar>
 
-    </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar"
+        android:layout_below="@+id/idCardView"
         android:background="@null"
         android:id="@+id/getCurrentLocation"
         android:textColor="@color/colorAccent"
         android:text="USE MY LOCATION"
         />
-    <fragment
-        android:id="@+id/place_autocomplete_fragment"
-        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/idCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="5"/>
+        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/appbar"
+        app:cardCornerRadius="4dp">
+        <fragment android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:id="@+id/autocomplete_fragment"/>
+        />
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
