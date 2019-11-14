@@ -3,11 +3,15 @@ package com.example.grocerystore.User;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.Admin.Item_data_model;
 import com.example.grocerystore.Admin.Shops_Main;
 import com.example.grocerystore.MainActivity;
+import com.example.grocerystore.MyUtility;
 import com.example.grocerystore.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,12 +40,27 @@ public class Cart_Main extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     DocumentReference documentReference;
+    TextView subtotal,price;
+    Button buy;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart_main);
+        subtotal = findViewById(R.id.total);
+        price = findViewById(R.id.price);
+        price.setText("Rs.0");
         recyclerView = findViewById(R.id.recyclerview);
+        buy = findViewById(R.id.buy_now);
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Cart_Main.this,Payment.class);
+                intent.putExtra("amount",price.getText());
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -73,6 +93,25 @@ public class Cart_Main extends AppCompatActivity {
                             recyclerView.setHasFixedSize(true);
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setAdapter(cart_adapter);
+                            int price1= 0;
+                            price.setText("0");
+                            Set<String> s = MyUtility.m.keySet();
+                            for(String sq : s)
+                            {
+                                Log.d("Set " , sq);
+                                for(Item_data_model item_data_model1 : list1){
+                                    if(sq.equalsIgnoreCase(item_data_model1.getItemId()))
+                                    {
+                                        int p = Integer.parseInt(MyUtility.m.get(item_data_model1.getItemId()));
+                                        Log.d("Quantity ", "onSuccess: " + p);
+                                        int pe = p*Integer.parseInt(item_data_model1.getItemPrice());
+                                        Log.d("Price", "onSuccess: " + pe);
+                                        price1 +=pe ;
+                                        Log.d("Total Price", String.valueOf(price1));
+                                    }
+                                }
+                            }
+                            price.setText("Rs "+price1+"");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

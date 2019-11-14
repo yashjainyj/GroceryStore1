@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.Admin.Shops_Main;
+import com.example.grocerystore.Main.MyOrder;
 import com.example.grocerystore.Main.ShowItemMain;
 import com.example.grocerystore.Model.ViewPagerAdapter;
 import com.example.grocerystore.Model.ViewPager_Model;
@@ -181,6 +182,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
+
         if (id == R.id.location) {
 
         } else if (id == R.id.userLogin) {
@@ -192,11 +195,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.order) {
-            Intent intent = new Intent(MainActivity.this, Shops_Main.class);
+            Intent intent = new Intent(MainActivity.this, MyOrder.class);
             startActivity(intent);
             finish();
-
-
         } else if (id == R.id.cart) {
             Intent intent = new Intent(MainActivity.this, Cart_Main.class);
             startActivity(intent);
@@ -205,6 +206,13 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+        }
+        else if(id == R.id.admin)
+        {
+            Intent intent = new Intent(MainActivity.this, Shops_Main.class);
+            startActivity(intent);
+            finish();
 
         }
 

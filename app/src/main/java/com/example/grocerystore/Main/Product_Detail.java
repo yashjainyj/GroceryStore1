@@ -11,7 +11,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.grocerystore.Admin.Item_data_model;
 import com.example.grocerystore.Admin.Shop_Detais_Modal;
+import com.example.grocerystore.MyUtility;
 import com.example.grocerystore.R;
+import com.example.grocerystore.User.Cart_Main;
+import com.example.grocerystore.User.LoginActivity;
+import com.example.grocerystore.User.Payment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -61,18 +65,27 @@ public class Product_Detail extends AppCompatActivity {
                     databaseReference = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).child("Cart").child(item_id);
                     Map<String,String> m = new HashMap<>();
                     m.put("itemId",item_id);
+                    MyUtility.m.put(item_id,"1");
                     databaseReference.setValue(m);
                     Snackbar.make(v, "Item added to cart", Snackbar.LENGTH_LONG).show();
                 }
                 else
+                {
                     Toast.makeText(Product_Detail.this, "Please Login First", Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(Product_Detail.this, LoginActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
 
             }
         });
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Product_Detail.this, Cart_Main.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -106,8 +119,6 @@ public class Product_Detail extends AppCompatActivity {
                         desc.setText(item_data_model.getDescription());
                         shopId = item_data_model.getShopId();
                         Glide.with(Product_Detail.this).load(item_data_model.getImageUrl()).into(product_image);
-
-
                         databaseReference = FirebaseDatabase.getInstance().getReference();
                         databaseReference.child("Shopes").child(shopId).addValueEventListener(new ValueEventListener() {
                             @Override

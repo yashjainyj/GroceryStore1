@@ -85,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1"
+                    android:id="@+id/count"
                     android:textColor="#000"
                     android:textSize="18dp"
                     />
@@ -93,6 +94,7 @@
                     android:layout_width="24dp"
                     android:layout_weight="1"
                     android:layout_height="24dp"
+                    android:id="@+id/plus"
                     android:src="@drawable/ic_plus_symbol_in_a_rounded_black_square"
                     />
 

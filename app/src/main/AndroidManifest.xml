@@ -53,6 +53,11 @@
         <activity android:name=".Main.ShowItemMain"></activity>
         <activity android:name=".Main.Product_Detail"></activity>
         <activity android:name=".User.Cart_Main"></activity>
+        <activity android:name=".User.Payment"></activity>
+        <activity android:name=".Main.MyOrder"></activity>
+        <activity android:name=".Main.MyOrder_Info">
+
+        </activity>
     </application>
 
 </manifest>

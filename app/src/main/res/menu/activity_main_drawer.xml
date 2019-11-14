@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item android:id="@+id/admin"
+            android:title="Admin"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+
+            ></item>
         <item
             android:id="@+id/location"
             android:icon="@drawable/ic_placeholder"
