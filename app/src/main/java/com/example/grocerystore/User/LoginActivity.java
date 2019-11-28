@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -43,12 +44,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText email;
+
     Button submit,mobile;
     FirebaseAuth mAuth;
+    TextInputEditText email,password;
     TrueSdkScope trueScope;
     List<AuthUI.IdpConfig> providers;
-
+Button SignIn;
     public static final int MY_REQUEST_CODE = 1222;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(LoginActivity.this);
         submit= findViewById(R.id.submit);
         mobile = findViewById(R.id.phone);
+        email = findViewById(R.id.username);
+        password = findViewById(R.id.etPassword);
+        SignIn=findViewById(R.id.signin);
         mAuth = FirebaseAuth.getInstance();
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -85,6 +90,36 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        SignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Email=email.getText().toString();
+                String Pass=password.getText().toString();
+                if(!Pass.equalsIgnoreCase("") && !Email.equalsIgnoreCase(""))
+                {
+                    mAuth.signInWithEmailAndPassword(Email,Pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure( @Nullable Exception e) {
+                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(LoginActivity.this, "Field can't be empty", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

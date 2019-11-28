@@ -47,14 +47,18 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.io.IOException;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,6 +80,7 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
     Geocoder geocoder;
     PlacesClient placesClient;
     String key = "AIzaSyB8iCaCRn1onwn_1sdLSYxnRnn7XykZUYs";
+    DatabaseReference databaseReference;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -168), new LatLng(71, 136));
 
@@ -86,6 +91,7 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
         setTitle("Search Loaction");
         setTitleColor(Color.WHITE);
         Window window = this.getWindow();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimaryDark));
@@ -104,6 +110,11 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 Toast.makeText(SearchLocation.this, place.getName(), Toast.LENGTH_SHORT).show();
+                FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
+                databaseReference = FirebaseDatabase.getInstance().getReference().child(firebaseAuth.getCurrentUser().getUid()).child("CurrentLocation");
+                Map<String,String > m = new HashMap<>();
+                m.put("Locality",place.getName());
+                databaseReference.setValue(m);
             }
 
             @Override
@@ -143,6 +154,11 @@ public class SearchLocation extends AppCompatActivity implements GoogleApiClient
                                 MyUtility.location=list.get(0).getLocality();
                                 Intent intent = new Intent(SearchLocation.this, MainActivity.class);
                                 Toast.makeText(SearchLocation.this, list.get(0).getSubAdminArea(), Toast.LENGTH_SHORT).show();
+                                FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
+                                databaseReference = FirebaseDatabase.getInstance().getReference().child(firebaseAuth.getCurrentUser().getUid()).child("CurrentLocation");
+                                Map<String,String > m = new HashMap<>();
+                                m.put("Locality",list.get(0).getSubAdminArea());
+                                databaseReference.setValue(m);
                                 startActivity(intent);
                                 finish();
 

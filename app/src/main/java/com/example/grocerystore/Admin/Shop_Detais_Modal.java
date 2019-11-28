@@ -8,10 +8,12 @@ public class Shop_Detais_Modal {
     private String image_Url;
     private String min;
     private String contact_number;
+    private String upi;
+    private String emailid;
 
     public Shop_Detais_Modal() {
     }
-    public Shop_Detais_Modal(String shop_Id, String shop_Name, String shop_Address, String shop_rating,String min, String image_Url, String contact_number) {
+    public Shop_Detais_Modal(String shop_Id, String shop_Name, String shop_Address, String shop_rating, String min, String image_Url, String contact_number, String upi, String emailid) {
         this.shop_Id = shop_Id;
         this.shop_Name = shop_Name;
         this.shop_Address = shop_Address;
@@ -19,6 +21,8 @@ public class Shop_Detais_Modal {
         this.image_Url = image_Url;
         this.min = min;
         this.contact_number = contact_number;
+        this.upi = upi;
+        this.emailid = emailid;
     }
 
     public String getShop_Id() {
@@ -76,5 +80,20 @@ public class Shop_Detais_Modal {
         this.min = min;
     }
 
+    public String getEmailid() {
+        return emailid;
+    }
+
+    public void setEmailid(String emailid) {
+        this.emailid = emailid;
+    }
+
+    public String getUpi() {
+        return upi;
+    }
+
+    public void setUpi(String upi) {
+        this.upi = upi;
+    }
 }
 

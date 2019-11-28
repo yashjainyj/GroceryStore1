@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -24,7 +25,7 @@
                 app:civ_border_color="@color/colorAccent"
                 android:layout_marginTop="51dp"
                 android:id="@+id/circleImageView"
-                android:layout_centerHorizontal="true"/>
+                android:layout_gravity="center_horizontal"/>
 
             <ImageView
                 android:layout_width="50dp"
@@ -33,13 +34,13 @@
                 android:layout_below="@id/circleImageView"
                 android:layout_marginTop="-85dp"
                 android:id="@+id/camera"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="50sp"
                 android:layout_marginLeft="20dp"
                 style="@style/Widget.Shrine.TextInputLayout"
                 android:id="@+id/name1"
@@ -133,6 +134,47 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                style="@style/Widget.Shrine.TextInputLayout"
+
+                android:layout_below="@+id/shop_phone1"
+                android:layout_marginRight="20dp"
+                android:hint="Enter Your UPI">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/upi"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                style="@style/Widget.Shrine.TextInputLayout"
+
+                android:layout_marginRight="20dp"
+                android:hint="Enter Email id">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/email"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,7 +187,7 @@
                 android:background="@drawable/button_design"
                 android:layout_below="@+id/raiting1"
                 />
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

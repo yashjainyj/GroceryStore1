@@ -3,10 +3,19 @@
     <color name="colorPrimary">#3C3C3C</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FA6D3E</color>
-
+    <color name="shimmer">#ECEAEA</color>
     <color name="color1">#424549</color>
     <color name="color2">#7e455e</color>
     <color name="color3">#796e25</color>
     <color name="color4">#59717c</color>
     <color name="color5">#14EB1A</color>
+    <color name="primaryColor">#848cb7</color>
+    <color name="primaryColorDark">#6d749f</color>
+    <color name="red">#ff3943</color>
+    <color name="redDark">#801b20</color>
+    <color name="greenLight">#abffc0</color>
+    <color name="green">#247b37</color>
+    <color name="greendark">#3eb959</color>
+    <color name="white">#fff</color>
+    <color name="accent">#ff40b1</color>
 </resources>

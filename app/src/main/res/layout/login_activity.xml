@@ -6,36 +6,140 @@
     android:layout_height="match_parent">
 
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_margin="20sp"
-       android:padding="10dp"
-       android:background="@drawable/shadow"
-       android:layout_height="wrap_content">
 
-       <Button
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/number"
-           android:text="Sign in with Others"
-           android:background="@color/colorAccent"
-           android:textColor="#fff"
-           android:id="@+id/submit"/>
-   </RelativeLayout>
 
-        <Button
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/phone"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#3F51B5"
-            android:textColor="#fff"
-            android:text="Auto Fill with Truecaller"
-            />
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
+                    android:id="@+id/logo"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/ic_launcher_background">
+                </ImageView>
+
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:id="@+id/email1"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/logo"
+                    android:hint="Enter Email id">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:padding="15dp"
+                        android:id="@+id/username"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/logo"
+                        >
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPasswordLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/email1"
+                    app:passwordToggleEnabled="true"
+                    android:hint="Enter Password"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etPasswordLayout"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Sign In"
+                    android:background="#00C6C4CA"
+                    android:id="@+id/signin"
+                    android:layout_marginBottom="20dp"
+                    >
+                </Button>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signin"
+                    android:id="@+id/forgetpass"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Forget Password?"
+                    android:textColor="#000000"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/forgetpass"
+                    android:layout_marginLeft="30dp"
+                    android:text="Don't have account?   "
+                    android:id="@+id/question"
+                    >
+                </TextView>
+
+
+
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/question"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Sign In With Others"
+                    android:background="#00C6C4CA"
+                    android:id="@+id/submit"
+                    android:layout_marginBottom="20dp"
+
+                    />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phone"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/submit"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#3F51B5"
+                    android:textColor="#fff"
+                    android:text="Auto Fill with Truecaller"
+                    />
+            </RelativeLayout>
+
+        </ScrollView>
 
 </LinearLayout>

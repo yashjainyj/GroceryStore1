@@ -24,11 +24,16 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +50,7 @@ public class GetLocation extends AppCompatActivity {
     public boolean mLoactionPermissionGranted = false;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     Button getCurrentLocation,manuallyLocation;
+    DatabaseReference databaseReference;
     Geocoder geocoder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +66,7 @@ public class GetLocation extends AppCompatActivity {
                 getDeviceLocation();
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         manuallyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +98,11 @@ public class GetLocation extends AppCompatActivity {
                                 Log.d(TAG,  list.get(0).getAddressLine(0) + "\n" + list.get(0).getLocality() + "\n" + list.get(0).getAdminArea() + "\n" + list.get(0).getCountryName() + "\n"+ list.get(0).getPostalCode() + "\n"+ list .get(0).getFeatureName()+"\n" + list.get(0).getSubLocality()+"\n"+list.get(0).getSubAdminArea()+"\n"+list.get(0).getPremises() + "\n"+ list.get(0).getPhone()+"\n"+list.get(0).getThoroughfare()+ "\n"+list.get(0).getSubThoroughfare());
                                 MyUtility.location=list.get(0).getLocality();                                Intent intent = new Intent(GetLocation.this, MainActivity.class);
                                 Toast.makeText(GetLocation.this, list.get(0).getSubAdminArea(), Toast.LENGTH_SHORT).show();
+                                FirebaseAuth firebaseAuth =FirebaseAuth.getInstance();
+                                databaseReference = FirebaseDatabase.getInstance().getReference().child(firebaseAuth.getCurrentUser().getUid()).child("CurrentLocation");
+                                Map<String,String > m = new HashMap<>();
+                                m.put("Locality",list.get(0).getSubAdminArea());
+                                databaseReference.setValue(m);
                                 startActivity(intent);
                                 finish();
 

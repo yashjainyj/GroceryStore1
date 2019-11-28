@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.grocerystore.MainActivity;
 import com.example.grocerystore.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,7 @@ import okhttp3.Address;
 public class Address_Detail extends AppCompatActivity {
     TextInputEditText addAddress;
     RecyclerView recyclerView;
+    ShimmerFrameLayout shimmerFrameLayout;
     DatabaseReference databaseReference;
     FirebaseAuth auth;
     List<Address_DataModel> list = new ArrayList<>();
@@ -40,6 +42,7 @@ public class Address_Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adderss_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        shimmerFrameLayout = findViewById(R.id.shimmer);
         setSupportActionBar(toolbar);
         setTitle("Address");
         auth = FirebaseAuth.getInstance();
@@ -88,6 +91,9 @@ public class Address_Detail extends AppCompatActivity {
                     Address_Adapter address_adapter = new Address_Adapter(Address_Detail.this,list);
                     //address_adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(address_adapter);
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     //list.add(address_dataModel);
                 }
             }
@@ -98,7 +104,17 @@ public class Address_Detail extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

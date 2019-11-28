@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:background="@drawable/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
+        android:id="@+id/cartdetail"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmer"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/productname1"
+                android:textColor="#000"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:background="@color/shimmer"
+                android:id="@+id/product_price1"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/productname1"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="50dp"
+                android:textSize="13dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:background="@color/shimmer"
+                android:id="@+id/q"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/product_price1"
+                android:layout_marginLeft="110dp"
+
+                android:textSize="13dp"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:background="@color/shimmer"
+                android:id="@+id/product_image1"
+                android:layout_alignParentRight="false"
+                android:scaleType="center"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@color/shimmer"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete"
+                android:visibility="gone"
+                android:layout_below="@id/product_price1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

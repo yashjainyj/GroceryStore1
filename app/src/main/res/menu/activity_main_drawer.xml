@@ -13,10 +13,7 @@
             android:id="@+id/location"
             android:icon="@drawable/ic_placeholder"
             android:title="location" />
-        <item
-            android:id="@+id/userLogin"
-            android:icon="@drawable/ic_user"
-            android:title="Login" />
+
         <item
             android:id="@+id/address"
             android:icon="@drawable/ic_address"
@@ -29,6 +26,11 @@
             android:id="@+id/cart"
             android:icon="@drawable/ic_shopping_cart"
             android:title="My Cart" />
+        <item
+            android:id="@+id/userLogin"
+            android:icon="@drawable/ic_user"
+            android:title="Login" />
+
     </group>
 
     <item android:title="Communicate">

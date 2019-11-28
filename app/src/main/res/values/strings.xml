@@ -8,4 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="key">AIzaSyB8iCaCRn1onwn_1sdLSYxnRnn7XykZUYs</string>
     <string name="partnerKey">XOkPB0bb8a3d47cb34559917d486d828f4a99</string>
+
+
+    <string name="positive_text_default">You have successfully Unlocked the Deal. Click here to buy  </string>
 </resources>

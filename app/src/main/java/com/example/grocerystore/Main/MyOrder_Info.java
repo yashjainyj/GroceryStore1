@@ -3,14 +3,19 @@ package com.example.grocerystore.Main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.grocerystore.Admin.Item_data_model;
 import com.example.grocerystore.Admin.Shop_Detais_Modal;
+import com.example.grocerystore.MainActivity;
 import com.example.grocerystore.R;
 import com.example.grocerystore.User.Address_DataModel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +38,8 @@ public class MyOrder_Info extends AppCompatActivity {
     String orderId,itemId,addressId,shopId;
     TextView date,refer,total,name,price,s_address,b_address,item,finaltotal,shop_name;
     ImageView imageView;
+    ShimmerFrameLayout shimmerFrameLayout;
+    ScrollView relativeLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,8 @@ public class MyOrder_Info extends AppCompatActivity {
         refer = findViewById(R.id.order_ref);
         total = findViewById(R.id.order_tot);
         name = findViewById(R.id.name);
+        shimmerFrameLayout = findViewById(R.id.shimmer);
+        relativeLayout = findViewById(R.id.rel1);
         price = findViewById(R.id.price);
         s_address = findViewById(R.id.address);
         b_address = findViewById(R.id.add);
@@ -106,6 +115,9 @@ public class MyOrder_Info extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Shop_Detais_Modal shop_detais_modal = dataSnapshot.getValue(Shop_Detais_Modal.class);
                                 shop_name.setText(shop_detais_modal.getShop_Name());
+                                shimmerFrameLayout.stopShimmer();
+                                shimmerFrameLayout.setVisibility(View.GONE);
+                                relativeLayout.setVisibility(View.VISIBLE);
 
                             }
 
@@ -124,5 +136,24 @@ public class MyOrder_Info extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent  = new Intent(this, MyOrder.class);
+        startActivity(intent);
+        finish();
     }
 }

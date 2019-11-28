@@ -39,6 +39,7 @@ public class Add_Shop extends AppCompatActivity {
     Button add;
     Uri profileUrl;
     private Uri uriProfileImage;
+    TextInputEditText[] textInputEditTexts;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class Add_Shop extends AppCompatActivity {
         setTitle("Add Shop");
         circleImageView = findViewById(R.id.circleImageView);
         storageReference = FirebaseStorage.getInstance().getReference();
-        TextInputEditText[] textInputEditTexts = {findViewById(R.id.shop_name),findViewById(R.id.shop_address),findViewById(R.id.min),findViewById(R.id.raiting),findViewById(R.id.shop_phone)};
+        textInputEditTexts = new TextInputEditText[]{findViewById(R.id.shop_name), findViewById(R.id.shop_address), findViewById(R.id.min), findViewById(R.id.raiting), findViewById(R.id.shop_phone), findViewById(R.id.upi), findViewById(R.id.email)};
         add= findViewById(R.id.submit);
         camera= findViewById(R.id.camera);
         progressDialog = new ProgressDialog(this);
@@ -65,7 +66,7 @@ public class Add_Shop extends AppCompatActivity {
             public void onClick(View v) {
 
                 boolean checked=false;
-                for (int i=0;i<5;i++)
+                for (int i=0;i<7;i++)
                 {
                     if(textInputEditTexts[i].getText().toString().equalsIgnoreCase(""))
                     {
@@ -98,7 +99,7 @@ public class Add_Shop extends AppCompatActivity {
                             DatabaseReference databaseReference1 = databaseReference.push();
                             String s1 = databaseReference1.getKey();
                             databaseReference = FirebaseDatabase.getInstance().getReference().child("Shopes").child(s1);
-                            Shop_Detais_Modal shop_detais_modal1 = new Shop_Detais_Modal(s1,textInputEditTexts[0].getText().toString(),textInputEditTexts[1].getText().toString(),textInputEditTexts[3].getText().toString(),textInputEditTexts[2].getText().toString(),profileUrl.toString(),textInputEditTexts[4].getText().toString());
+                            Shop_Detais_Modal shop_detais_modal1 = new Shop_Detais_Modal(s1,textInputEditTexts[0].getText().toString(),textInputEditTexts[1].getText().toString(),textInputEditTexts[3].getText().toString(),textInputEditTexts[2].getText().toString(),profileUrl.toString(),textInputEditTexts[4].getText().toString(),textInputEditTexts[5].getText().toString(), textInputEditTexts[6].getText().toString());
                             databaseReference1.setValue(shop_detais_modal1);
                             Toast.makeText(Add_Shop.this, "Shop Added", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
