@@ -20,12 +20,13 @@
 
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_below="@+id/toolbar"
                     android:id="@+id/logo"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="50dp"
-                    android:src="@drawable/ic_launcher_background">
+                    android:src="@drawable/icon">
                 </ImageView>
 
 

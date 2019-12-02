@@ -1,12 +1,20 @@
 package com.example.grocerystore.Admin;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.R;
@@ -24,7 +32,9 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +45,6 @@ public class Show_Item extends AppCompatActivity {
     private CollectionReference collectionReference ;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     ArrayList<Item_data_model> arrayList;
-
     ShimmerFrameLayout shimmerFrameLayout;
     RelativeLayout relativeLayout;
 
@@ -45,7 +54,13 @@ public class Show_Item extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shops_items);
         Window window = this.getWindow();
-        setTitle("Items");
+       // setTitle("Items");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        toolbar = findViewById(R.id.toolbar);
+//        getSupportActionBar();
+//        toolbar.setTitle("Items");
+//        setSupportActionBar(toolbar);
         shimmerFrameLayout = findViewById(R.id.shimmer);
         relativeLayout = findViewById(R.id.rel1);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -83,7 +98,7 @@ public class Show_Item extends AppCompatActivity {
                     if(item_data_model.getShopId().equalsIgnoreCase(shopId))
                     {
                             arrayList.add(item_data_model);
-                        Toast.makeText(Show_Item.this, item_data_model.getItemName(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Show_Item.this, item_data_model.getItemName(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(Show_Item.this,2);
@@ -121,4 +136,5 @@ public class Show_Item extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

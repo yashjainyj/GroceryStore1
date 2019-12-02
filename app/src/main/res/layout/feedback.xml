@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="10dip"
+        android:orientation="vertical"
+        android:background="@drawable/shadow" />
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5px">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:id="@+id/feedback1"
+                android:layout_below="@+id/circleImageView"
+                android:layout_marginRight="20dp"
+                android:hint="Feedback">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/feedback"
+                    android:layout_height="200dp"
+                    android:inputType="text"
+                    android:scrollbars="vertical"
+                    android:maxLines="6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:text="raiting"
+                android:id="@+id/tvRating"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="0.5" >
+            </RatingBar>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4px">
+                <Button
+                    android:text="send"
+                    android:id="@+id/btnSubmit"
+                    android:background="@drawable/green_button"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <Button
+                    android:text="Call us at"
+                    android:id="@+id/calll"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/button_design"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

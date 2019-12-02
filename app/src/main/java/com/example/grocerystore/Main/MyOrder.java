@@ -24,6 +24,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,9 @@ public class MyOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shops_items);
         textInputEditText = findViewById(R.id.add_item);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("My order");
+        setSupportActionBar(toolbar);
         textInputLayout = findViewById(R.id.add_address1);
         textInputLayout.setVisibility(View.GONE);
         textInputEditText.setVisibility(View.GONE);

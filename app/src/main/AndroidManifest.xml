@@ -11,7 +11,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="whateverString"
@@ -47,17 +47,21 @@
         <activity android:name=".User.Add_Address" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".User.Address_Detail" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Admin.Shops_Main" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Admin.Show_Item"></activity>
+        <activity android:name=".Admin.Show_Item"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity android:name=".Admin.Add_Item"></activity>
         <activity android:name=".Admin.Add_Shop"></activity>
-        <activity android:name=".Main.ShowItemMain"></activity>
+        <activity android:name=".Main.ShowItemMain"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Main.Product_Detail"></activity>
         <activity android:name=".User.Cart_Main"></activity>
         <activity android:name=".User.Payment"></activity>
-        <activity android:name=".Main.MyOrder"></activity>
-        <activity android:name=".Main.MyOrder_Info">
-
-        </activity>
+        <activity android:name=".Main.MyOrder"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Main.MyOrder_Info">        </activity>
+        <activity android:name=".User.Feedback"></activity>
     </application>
 
 </manifest>

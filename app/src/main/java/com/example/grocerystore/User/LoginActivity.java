@@ -199,7 +199,7 @@ Button SignIn;
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Toast.makeText(this, firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
             }
-            else
+            else if (requestCode==RESULT_CANCELED)
             {
                 Toast.makeText(LoginActivity.this, response.getError()+"", Toast.LENGTH_SHORT).show();
             }

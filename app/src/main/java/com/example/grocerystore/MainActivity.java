@@ -24,6 +24,7 @@ import com.example.grocerystore.Splash.SplashActivity;
 import com.example.grocerystore.User.Add_Address;
 import com.example.grocerystore.User.Address_Detail;
 import com.example.grocerystore.User.Cart_Main;
+import com.example.grocerystore.User.Feedback;
 import com.example.grocerystore.User.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -244,20 +245,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -289,7 +276,18 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_share) {
 
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Grocery Store");
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+
         } else if (id == R.id.nav_send) {
+            Intent intent = new Intent(MainActivity.this, Feedback.class);
+            startActivity(intent);
+            finish();
 
         }
         else if(id == R.id.admin)
