@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
         if (firebaseAuth.getCurrentUser()!=null)
         {
             Menu nav_Menu = navigationView.getMenu();
-            if(firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("asifofficial10@gmail.com") || firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("jainyash031@gmail.com"))
+            if(firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("asifofficial10@gmail.com") || firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("jainyash031@gmail.com") || firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase(""))
             {
                 nav_Menu.findItem(R.id.admin).setVisible(true);
             }
