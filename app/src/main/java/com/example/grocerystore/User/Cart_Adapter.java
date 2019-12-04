@@ -80,7 +80,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.Adapter_View
             public void onClick(View v) {
                 int count1 = Integer.parseInt(adapter_viewHolder.count.getText().toString());
                 count1++;
-                Toast.makeText(context, item_data_model.getItemId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, item_data_model.getItemId(), Toast.LENGTH_SHORT).show();
                 MyUtility.m.put(item_data_model.getItemId(),count1+"");
                 adapter_viewHolder.count.setText(count1+"");
                 Intent intent = new Intent(context,Cart_Main.class);

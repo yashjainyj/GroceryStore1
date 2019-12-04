@@ -89,6 +89,7 @@ public class GetLocation extends AppCompatActivity {
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful())
                         {
+
                             Location currentLocation = (Location) task.getResult();
                             //Log.d(TAG, currentLocation.toString() + currentLocation.getLatitude() + "     " + currentLocation.getLongitude());
                             geocoder = new Geocoder(GetLocation.this, Locale.getDefault());

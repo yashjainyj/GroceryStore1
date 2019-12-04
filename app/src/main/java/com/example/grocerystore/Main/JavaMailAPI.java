@@ -94,25 +94,6 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             //Sending email
             Transport.send(mm);
 
-//            BodyPart messageBodyPart = new MimeBodyPart();
-//
-//            messageBodyPart.setText(message);
-//
-//            Multipart multipart = new MimeMultipart();
-//
-//            multipart.addBodyPart(messageBodyPart);
-//
-//            messageBodyPart = new MimeBodyPart();
-//
-//            DataSource source = new FileDataSource(filePath);
-//
-//            messageBodyPart.setDataHandler(new DataHandler(source));
-//
-//            messageBodyPart.setFileName(filePath);
-//
-//            multipart.addBodyPart(messageBodyPart);
-
-//            mm.setContent(multipart);
 
         } catch (MessagingException e) {
             e.printStackTrace();

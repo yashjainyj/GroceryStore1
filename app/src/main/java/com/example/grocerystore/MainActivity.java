@@ -162,6 +162,15 @@ public class MainActivity extends AppCompatActivity
         if (firebaseAuth.getCurrentUser()!=null)
         {
             Menu nav_Menu = navigationView.getMenu();
+            if(firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("asifofficial10@gmail.com") || firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("jainyash031@gmail.com"))
+            {
+                nav_Menu.findItem(R.id.admin).setVisible(true);
+            }
+            else
+            {
+                nav_Menu.findItem(R.id.admin).setVisible(false);
+            }
+
             nav_Menu.findItem(R.id.userLogin).setTitle("Logout");
             View view = getLayoutInflater().inflate(R.layout.nav_header_main,null);
             TextView name = view.findViewById(R.id.welcome);
@@ -193,6 +202,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
+
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.address).setVisible(false);
             nav_Menu.findItem(R.id.admin).setVisible(false);
@@ -205,7 +215,6 @@ public class MainActivity extends AppCompatActivity
 
 
     private void getImages(){
-
         mImageUrls.add("https://gmispace.com/thumbs/Vf7xhl1rq+7WF4w6VUiu8hGWujPlAm34EJJBEet5P0A=assorted-grocery-items.jpg");
         mNames.add("All");
 
@@ -292,9 +301,13 @@ public class MainActivity extends AppCompatActivity
         }
         else if(id == R.id.admin)
         {
-            Intent intent = new Intent(MainActivity.this, Shops_Main.class);
-            startActivity(intent);
-            finish();
+
+
+                Intent intent = new Intent(MainActivity.this, Shops_Main.class);
+                startActivity(intent);
+                finish();
+
+
 
         }
 

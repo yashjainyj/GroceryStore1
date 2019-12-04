@@ -32,7 +32,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Add_Item extends AppCompatActivity {
     CircleImageView circleImageView;
     Button add;

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.grocerystore.MainActivity;
@@ -46,6 +47,7 @@ import static android.content.ContentValues.TAG;
 public class LoginActivity extends AppCompatActivity {
 
     Button submit,mobile;
+    TextView forgetpass;
     FirebaseAuth mAuth;
     TextInputEditText email,password;
     TrueSdkScope trueScope;
@@ -56,6 +58,7 @@ Button SignIn;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        forgetpass = findViewById(R.id.forgetpass);
         FirebaseApp.initializeApp(LoginActivity.this);
         submit= findViewById(R.id.submit);
         mobile = findViewById(R.id.phone);
@@ -64,6 +67,7 @@ Button SignIn;
         SignIn=findViewById(R.id.signin);
         mAuth = FirebaseAuth.getInstance();
         providers = Arrays.asList(
+
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build()
@@ -91,6 +95,27 @@ Button SignIn;
             }
         });
 
+        forgetpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(email.getText().toString().equalsIgnoreCase(""))
+                {
+                    Toast.makeText(LoginActivity.this, "Enter email address", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful())
+                            {
+                                Toast.makeText(LoginActivity.this, "Reset link s send to your Email address", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
 
 
         SignIn.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +125,7 @@ Button SignIn;
                 String Pass=password.getText().toString();
                 if(!Pass.equalsIgnoreCase("") && !Email.equalsIgnoreCase(""))
                 {
+
                     mAuth.signInWithEmailAndPassword(Email,Pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
