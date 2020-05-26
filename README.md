@@ -1,4 +1,4 @@
-# GroceryStore1
+# GroceryStore
 
 Grocery Store is an application for Android smartphones. It is specially created to
 provide users to grocery items basis on the price comparison, ratings/feedback in a
